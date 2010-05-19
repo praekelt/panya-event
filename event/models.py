@@ -3,21 +3,23 @@ from django.db import models
 from ckeditor.fields import RichTextField
 from content.models import ModelBase
 from show.models import ShowContributor
+
+PROVINCES = (
+    ('Eastern Cape', 'Eastern Cape'),
+    ('Free State', 'Free State'),
+    ('Gauteng', 'Gauteng'),
+    ('KwaZulu-Natal', 'KwaZulu-Natal'),
+    ('Limpopo', 'Limpopo'),
+    ('Mpumalanga', 'Mpumalanga'),
+    ('Northern Cape', 'Northern Cape'),
+    ('North-West', 'North-West'),
+    ('Western Cape', 'Western Cape'),
+)
     
 class Location(models.Model):
     city = models.CharField(max_length=255, help_text='Name of the city.')
     province = models.CharField(
-        choices=(
-            ('Eastern Cape', 'Eastern Cape'),
-            ('Free State', 'Free State'),
-            ('Gauteng', 'Gauteng'),
-            ('KwaZulu-Natal', 'KwaZulu-Natal'),
-            ('Limpopo', 'Limpopo'),
-            ('Mpumalanga', 'Mpumalanga'),
-            ('Northern Cape', 'Northern Cape'),
-            ('North-West', 'North-West'),
-            ('Western Cape', 'Western Cape'),
-        ),
+        choices=PROVINCES,
         max_length=255,
         help_text='Name of the province.'
     )
