@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load content_inclusion_tags event_inclusion_tags %} 
+
+{% block content %}
+    <div class="page section_events">
+	    <div class="title">
+		    <h1>{{ title }}</h1>
+		</div>
+
+        {% event_entryitem_listing object_list %}
+
+        {% pager page_obj %}
+
+	</div>
+{% endblock %}
