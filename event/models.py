@@ -2,9 +2,7 @@ from django.db import models
 
 from ckeditor.fields import RichTextField
 from content.models import ModelBase
-
-class Event(ModelBase):
-    content = RichTextField(help_text='Full article detailing this event.')
+from show.models import ShowContributor
     
 class Location(models.Model):
     city = models.CharField(max_length=255, help_text='Name of the city.')
@@ -28,7 +26,6 @@ class Location(models.Model):
         return "%s, %s" % (self.city, self.province)
 
 class Venue(models.Model):
-    event = models.ForeignKey(Event)
     name = models.CharField(max_length=255, help_text='A short descriptive name.')
     address = models.CharField(max_length=512, help_text='Physical venue address.')
     location = models.ForeignKey(
@@ -41,6 +38,19 @@ class Venue(models.Model):
     def __unicode__(self):
         return self.name
 
-class Appearance(ModelBase):
-    event = models.ForeignKey(Event, related_name='apearances')
-    #castmember = models.ForeignKey(CastMember, related_name='apearances')
+class Event(ModelBase):
+    venue = models.ForeignKey(
+        Venue,
+        help_text='Venue where the event will take place.'
+    )
+    content = RichTextField(help_text='Full article detailing this event.')
+
+class Appearance(models.Model):
+    event = models.ForeignKey(
+        Event,
+        related_name='apearances'
+    )
+    show_contributor = models.ForeignKey(
+        ShowContributor,
+        related_name='apearances'
+    )
