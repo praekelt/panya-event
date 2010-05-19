@@ -27,7 +27,7 @@ class Location(models.Model):
     def __unicode__(self):
         return "%s, %s" % (self.city, self.province)
 
-class Venue(ModelBase):
+class Venue(models.Model):
     event = models.ForeignKey(Event)
     name = models.CharField(max_length=255, help_text='A short descriptive name.')
     address = models.CharField(max_length=512, help_text='Physical venue address.')
@@ -43,4 +43,4 @@ class Venue(ModelBase):
 
 class Appearance(ModelBase):
     event = models.ForeignKey(Event, related_name='apearances')
-    castmember = models.ForeignKey(CastMember, related_name='apearances')
+    #castmember = models.ForeignKey(CastMember, related_name='apearances')
