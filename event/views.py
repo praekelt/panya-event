@@ -1,7 +1,7 @@
 from cal.models import EntryItem
 from content.generic.views import GenericObjectList, GenericObjectDetail
 from content.models import ModelBase
-from show.models import Event
+from event.models import Event
 
 class EventEntryItemList(GenericObjectList):
     def get_extra_context(self, *args, **kwargs):
@@ -25,7 +25,7 @@ class EventEntryItemList(GenericObjectList):
     def get_queryset(self):
         return EntryItem.permitted.by_model(Event).order_by('start')
 
-event_entryitem_list = EventEntryItemList()
+object_list = EventEntryItemList()
 
 class ObjectDetail(GenericObjectDetail):
     def get_extra_context(self, slug, *args, **kwargs):
@@ -50,8 +50,5 @@ class ObjectDetail(GenericObjectDetail):
 
     def get_queryset(self, slug):
         return Event.permitted.all()
-    
-    def get_url_callable(self):
-        return RadioShowContributorURL()
-
-event_object_detail = ObjectDetail()
+        
+object_detail = ObjectDetail()
