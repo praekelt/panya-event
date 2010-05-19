@@ -24,6 +24,9 @@ class EventEntryItemList(GenericObjectList):
     
     def get_queryset(self):
         return EntryItem.permitted.by_model(Event).order_by('start')
+        
+    def get_url_callable(self):
+        return ''
 
 object_list = EventEntryItemList()
 
