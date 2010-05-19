@@ -46,14 +46,14 @@ def generate():
         })
     
     # create some entries for events
-    for i in range(0, 24, 4):
-        start_hour = i
-        end_hour = 23 if i + 4 == 24 else i + 4
+    for i in range(0, EVENT_COUNT + 1):
+        start_date = datetime.now() + timedelta(days=random.randint(1, 365))
+        end_date = start_date + timedelta(hours=random.randint(1, 48))
         objects.append({
             "model": "cal.Entry",
             "fields": {
-                "start": str(datetime.now().replace(hour=start_hour, minute=0, second=0, microsecond=0)),
-                "end": str(datetime.now().replace(hour=end_hour, minute=0, second=0, microsecond=0)),
+                "start": str(start_date),
+                "end": str(end_date),
                 "content": {
                     "model": "event.Event",
                     "fields": {
@@ -65,6 +65,7 @@ def generate():
                     "fields": {
                         "title": "Calendar 2 Title",
                         "state": "published",
+                        "image": random.sample(IMAGES, 1)[0],
                         "sites": {
                             "model": "sites.Site",
                             "fields": { 
