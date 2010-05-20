@@ -2,7 +2,7 @@ from cal.models import EntryItem
 from content.generic.views import GenericObjectList, GenericObjectDetail
 from content.models import ModelBase
 from event.models import Event
-from pagemenu.pagemenus import IntegerFieldRangePageMenu
+from pagemenu.pagemenus import DateFieldIntervalPageMenu
 
 class ObjectList(GenericObjectList):
     def get_extra_context(self, *args, **kwargs):
@@ -18,7 +18,7 @@ class ObjectList(GenericObjectList):
         return extra_context
     
     def get_pagemenu(self, request, queryset, *args, **kwargs):
-        return None
+        return DateFieldIntervalPageMenu(queryset=queryset, request=request, field_name='start')
 
     def get_paginate_by(self):
         return 12
