@@ -1,11 +1,13 @@
 {% extends "base.html" %}
-{% load content_inclusion_tags event_inclusion_tags %} 
+{% load content_inclusion_tags event_inclusion_tags pagemenu_inclusion_tags %} 
 
 {% block content %}
     <div class="page section_events">
 	    <div class="title">
 		    <h1>{{ title }}</h1>
 		</div>
+		
+		{% pagemenu pagemenu %}
 
         {% event_entryitem_listing object_list %}
 
