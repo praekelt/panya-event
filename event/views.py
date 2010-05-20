@@ -17,7 +17,7 @@ class ObjectList(GenericObjectList):
 
         return extra_context
     
-    def get_pagemenu(self, request, queryset):
+    def get_pagemenu(self, request, queryset, *args, **kwargs):
         return None
 
     def get_paginate_by(self):
@@ -46,7 +46,7 @@ class ObjectDetail(GenericObjectDetail):
 
         return extra_context
     
-    def get_pagemenu(self, request, queryset):
+    def get_pagemenu(self, request, queryset, *args, **kwargs):
         return None
 
     def get_queryset(self, slug):
