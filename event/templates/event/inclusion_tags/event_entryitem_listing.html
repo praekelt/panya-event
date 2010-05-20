@@ -1,7 +1,15 @@
-{% load content_inclusion_tags %}
+{% load content_inclusion_tags humanize %}
 
-{% for object in object_list %}
-    {% with object as entryitem %}
-        {% render_object object.content.as_leaf_class entryitem_list_block %}
-    {% endwith %}
+{% regroup object_list by start.date as group_list %}
+
+{% for item in group_list %}
+    <div class="stamp">
+        <p><span class="stamp_month">{{ item.grouper|date:"M"}}</span><span class="stamp_day">{{ item.grouper|date:"d"}}</span></p>
+        <h3>{{ item.grouper|naturalday:"l d F Y"|title }}</h3>
+    </div>
+    {% for object in item.list %}
+        {% with object as entryitem %}
+            {% render_object object.content.as_leaf_class entryitem_list_wide %}
+        {% endwith %}
+    {% endfor %}
 {% endfor %}
