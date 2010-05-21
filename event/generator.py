@@ -47,7 +47,7 @@ def generate():
     
     # create some entries for events
     for i in range(0, EVENT_COUNT + 1):
-        start_date = datetime.now() + timedelta(days=random.randint(1, 365))
+        start_date = datetime.now() + timedelta(days=random.randint(1, 30))
         end_date = start_date + timedelta(hours=random.randint(1, 48))
         objects.append({
             "model": "cal.Entry",
