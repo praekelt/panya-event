@@ -21,7 +21,7 @@ class ObjectList(GenericObjectList):
         return DateFieldIntervalPageMenu(queryset=queryset, request=request, field_name='start')
 
     def get_paginate_by(self):
-        return 12
+        return 5
     
     def get_queryset(self):
         return EntryItem.permitted.by_model(Event).order_by('start')
