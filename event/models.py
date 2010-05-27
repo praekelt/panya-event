@@ -50,9 +50,9 @@ class Event(ModelBase):
 class Appearance(models.Model):
     event = models.ForeignKey(
         Event,
-        related_name='apearances'
+        related_name='appearances'
     )
     show_contributor = models.ForeignKey(
         ShowContributor,
-        related_name='apearances'
+        related_name='appearances'
     )
