@@ -1,8 +1,8 @@
 from cal.models import EntryItem
-from content.generic.views import GenericObjectList, GenericObjectDetail
-from content.models import ModelBase
 from event.models import Event
 from pagemenu.pagemenus import DateFieldIntervalPageMenu
+from panya.generic.views import GenericObjectList, GenericObjectDetail
+from panya.models import ModelBase
 
 class ObjectList(GenericObjectList):
     def get_extra_context(self, *args, **kwargs):

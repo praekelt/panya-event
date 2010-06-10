@@ -1,8 +1,8 @@
 from django.db import models
 
 from ckeditor.fields import RichTextField
-from content.models import ModelBase
-from show.models import ShowContributor
+from panya.models import ModelBase
+#from show.models import ShowContributor
 
 PROVINCES = (
     ('Eastern Cape', 'Eastern Cape'),
@@ -46,7 +46,7 @@ class Event(ModelBase):
         help_text='Venue where the event will take place.'
     )
     content = RichTextField(help_text='Full article detailing this event.')
-
+'''
 class Appearance(models.Model):
     event = models.ForeignKey(
         Event,
@@ -56,3 +56,4 @@ class Appearance(models.Model):
         ShowContributor,
         related_name='appearances'
     )
+'''
