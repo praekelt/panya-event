@@ -2,7 +2,6 @@ from django.db import models
 
 from ckeditor.fields import RichTextField
 from panya.models import ModelBase
-from show.models import ShowContributor
 
 PROVINCES = (
     ('Eastern Cape', 'Eastern Cape'),
