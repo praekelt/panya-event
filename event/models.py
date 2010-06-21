@@ -46,13 +46,3 @@ class Event(ModelBase):
         help_text='Venue where the event will take place.'
     )
     content = RichTextField(help_text='Full article detailing this event.')
-
-class Appearance(models.Model):
-    event = models.ForeignKey(
-        Event,
-        related_name='appearances'
-    )
-    show_contributor = models.ForeignKey(
-        ShowContributor,
-        related_name='appearances'
-    )
