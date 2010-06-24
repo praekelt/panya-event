@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load panya_inclusion_tags event_inclusion_tags pagemenu_inclusion_tags %} 
+{% load panya_inclusion_tags event_inclusion_tags %} 
 
 {% block content %}
     <div class="page section_events">
@@ -7,7 +7,7 @@
 		    <h1>{{ title }}</h1>
 		</div>
 		
-		{% pagemenu pagemenu %}
+		{% view_modifier view_modifier %}
 
         {% event_entryitem_listing object_list %}
 
