@@ -1,55 +1,37 @@
+from django.core.urlresolvers import reverse
+
 from cal.models import EntryItem
 from event.models import Event
-from pagemenu.pagemenus import DateFieldIntervalPageMenu
 from panya.generic.views import GenericObjectList, GenericObjectDetail
 from panya.models import ModelBase
+from panya.view_modifiers import DateFieldIntervalViewModifier
 
 class ObjectList(GenericObjectList):
     def get_extra_context(self, *args, **kwargs):
-        extra_context = super(ObjectList, self).get_extra_context(*args, **kwargs)
-        added_context = {'title': 'Events'}
-        if extra_context:
-            extra_context.update(
-                added_context,
-            )
-        else:
-            extra_context = added_context
-
-        return extra_context
+        return {'title': 'Events'}
     
-    def get_pagemenu(self, request, queryset, *args, **kwargs):
-        return DateFieldIntervalPageMenu(queryset=queryset, request=request, field_name='start')
+    def get_view_modifier(self, request, *args, **kwargs):
+        return DateFieldIntervalViewModifier(request=request, field_name='start')
 
-    def get_paginate_by(self):
+    def get_paginate_by(self, *args, **kwargs):
         return 7
     
-    def get_queryset(self):
+    def get_queryset(self, *args, **kwargs):
         return EntryItem.permitted.by_model(Event).order_by('start')
     
-    def get_template_name(self):
+    def get_template_name(self, *args, **kwargs):
         return 'event/event_entryitem_list.html'
 
 object_list = ObjectList()
 
 class ObjectDetail(GenericObjectDetail):
-    def get_extra_context(self, slug, *args, **kwargs):
-        extra_context = super(ObjectDetail, self).get_extra_context(*args, **kwargs)
-        added_context = {
-            'title': 'Events',
-        }
-        if extra_context:
-            extra_context.update(
-                added_context,
-            )
-        else:
-            extra_context = added_context
-
-        return extra_context
+    def get_extra_context(self, *args, **kwargs):
+        return {'title': 'Events'}
     
-    def get_pagemenu(self, request, queryset, *args, **kwargs):
-        return None
+    def get_view_modifier(self, request, *args, **kwargs):
+        return DateFieldIntervalViewModifier(request=request, field_name='start', base_url=reverse("event_entryitem_list"), ignore_defaults=True)
 
-    def get_queryset(self, slug):
+    def get_queryset(self, *args, **kwargs):
         return Event.permitted.all()
         
 object_detail = ObjectDetail()
