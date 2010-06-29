@@ -45,3 +45,7 @@ class Event(ModelBase):
         help_text='Venue where the event will take place.'
     )
     content = RichTextField(help_text='Full article detailing this event.')
+
+    def get_absolute_url(self):
+        return reverse('event_object_detail', kwargs={'slug': self.slug})
+
