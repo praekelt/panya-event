@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 from ckeditor.fields import RichTextField
 from panya.models import ModelBase
